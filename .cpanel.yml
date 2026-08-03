@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home2/praye066/public_html/
-    - /bin/cp -R ./* $DEPLOYPATH
+    - /bin/cp -R ./public_html/* $DEPLOYPATH
