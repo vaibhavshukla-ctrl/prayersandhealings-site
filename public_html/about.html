@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Prayers and Healings</title>
+<meta name="description" content="A quiet place for prayer, healing and hope, open to every faith and every journey.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<style>
+  .story p{font-size:1.08rem;color:var(--ink-soft);margin:0 0 20px;}
+  .values{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:50px 0;}
+  .value-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 24px;}
+  .value-card h3{font-size:1.1rem;margin-bottom:10px;}
+  .value-card p{font-size:0.95rem;color:var(--ink-soft);margin:0;}
+  @media (max-width:860px){.values{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="/" class="brand"><img src="/images/home/prayersandhealings-logo.png" alt="Prayers and Healings logo"><span>Prayers and Healings</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">&#9776;</button>
+    <nav><ul id="navMenu">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html" class="active">About</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/prayer-wall.php">Prayer Wall</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<div class="wrap-narrow">
+  <div class="page-hero" style="text-align:left;padding-top:60px;">
+    <span class="eyebrow">Our Story</span>
+    <h1 style="font-size:2.4rem;">A Quiet Place for Prayer, Healing and Hope</h1>
+  </div>
+
+  <div class="story">
+    <p>Prayers and Healings began with a simple belief: when someone asks for prayer, there should be someone willing to pray.</p>
+    <p>We bring together prayer, complementary spiritual healing, and experiences from sacred places, while respecting different faiths and traditions. Whether you come here seeking comfort for yourself, praying for someone you love, or simply looking for a moment of stillness, you are welcome.</p>
+    <p>We don't promise miracles. We don't charge for prayer. We simply try to create a place where people can seek support, offer prayer, and find hope, together.</p>
+  </div>
+
+  <div class="values">
+    <div class="value-card">
+      <h3>Always Free</h3>
+      <p>There is never a charge for requesting prayer, and there never will be.</p>
+    </div>
+    <div class="value-card">
+      <h3>Interfaith</h3>
+      <p>Open to every tradition and every belief. No prayer request is turned away.</p>
+    </div>
+    <div class="value-card">
+      <h3>Handled With Care</h3>
+      <p>Every request is reviewed with compassion before it's shared with our community.</p>
+    </div>
+  </div>
+
+  <div class="callout-inline">
+    <h2>Carrying Something on Your Heart?</h2>
+    <p>Whatever brought you here, you don't have to hold it alone.</p>
+    <a href="/request-prayer.html" class="btn" style="background:var(--gold);border-color:var(--gold);color:var(--ink);">Submit a Prayer Request</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="brand"><img src="/images/home/prayersandhealings-logo.png" alt="Prayers and Healings logo" style="height:34px;width:34px;"><span>Prayers and Healings</span></a>
+    <p class="fine">&copy; <span id="year"></span> Prayers and Healings. Held with care, for every faith and every journey.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('menuToggle').addEventListener('click', function(){ document.getElementById('navMenu').classList.toggle('open'); });
+</script>
+
+</body>
+</html>

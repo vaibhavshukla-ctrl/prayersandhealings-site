@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join Us | Prayers and Healings</title>
+<meta name="description" content="Pray for someone who needs it. Join our community of prayer volunteers and healing practitioners.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<style>
+  .role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:20px 0 60px;}
+  .role-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 24px;text-align:center;}
+  .role-card h3{font-size:1.1rem;margin-bottom:10px;}
+  .role-card p{font-size:0.93rem;color:var(--ink-soft);margin:0;}
+  @media (max-width:860px){.role-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="/" class="brand"><img src="/images/home/prayersandhealings-logo.png" alt="Prayers and Healings logo"><span>Prayers and Healings</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">&#9776;</button>
+    <nav><ul id="navMenu">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/prayer-wall.php">Prayer Wall</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="page-hero">
+    <span class="eyebrow">Join Us</span>
+    <h1>Pray for Someone Who Needs It</h1>
+    <p>If you believe a few minutes of your time and prayer can bring comfort to someone, we'd be glad to have you with us.</p>
+  </div>
+
+  <div class="role-grid">
+    <div class="role-card">
+      <h3>Prayer Volunteers</h3>
+      <p>Spend a few quiet minutes each week praying over requests from the Prayer Wall.</p>
+    </div>
+    <div class="role-card">
+      <h3>Healing Practitioners</h3>
+      <p>Share your practice, Reiki, sound healing, meditation, with our community.</p>
+    </div>
+    <div class="role-card">
+      <h3>Prayer &amp; Healing Groups</h3>
+      <p>Join or start a small group gathering for shared prayer and reflection.</p>
+    </div>
+  </div>
+
+  <div class="callout-inline">
+    <h2>Ready to Join?</h2>
+    <p>Reach out and let us know how you'd like to be involved.</p>
+    <a href="/contact.html" class="btn" style="background:var(--gold);border-color:var(--gold);color:var(--ink);">Contact Us</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="brand"><img src="/images/home/prayersandhealings-logo.png" alt="Prayers and Healings logo" style="height:34px;width:34px;"><span>Prayers and Healings</span></a>
+    <p class="fine">&copy; <span id="year"></span> Prayers and Healings. Held with care, for every faith and every journey.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('menuToggle').addEventListener('click', function(){ document.getElementById('navMenu').classList.toggle('open'); });
+</script>
+
+</body>
+</html>

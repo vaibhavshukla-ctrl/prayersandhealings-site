@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sacred Places | Prayers and Healings</title>
+<meta name="description" content="Practical guidance and personal experiences to help you prepare for visits to sacred places.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="/" class="brand"><img src="/images/home/prayersandhealings-logo.png" alt="Prayers and Healings logo"><span>Prayers and Healings</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">&#9776;</button>
+    <nav><ul id="navMenu">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/prayer-wall.php">Prayer Wall</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="page-hero">
+    <span class="eyebrow">Sacred Journeys</span>
+    <h1>Sacred Places &amp; Spiritual Journeys</h1>
+    <p>Practical guidance, personal experiences and spiritual context to help you prepare for visits to sacred places.</p>
+  </div>
+
+  <div class="blog-grid" style="margin-bottom:80px;">
+    <a class="card" href="/f/visiting-the-sree-padmanabhaswamy-temple-trivandrum-my-darshan/">
+      <div class="thumb"><img src="/images/padmanabhaswamy-temple/padmanabh-swamy-1.jpg" alt="Sree Padmanabhaswamy Temple, Trivandrum"></div>
+      <div class="body">
+        <span class="tag">Temple Visits</span>
+        <h3>Sree Padmanabhaswamy Temple</h3>
+        <p>What to know before your darshan, dress code, tickets and taking your time.</p>
+        <span class="read">Read the guide &rarr;</span>
+      </div>
+    </a>
+    <a class="card" href="/f/rameswaram-temple-darshan-guide-agni-theertham-22-wells-ticket/">
+      <div class="thumb"><img src="/images/rameswaram-temple/rameswaram-1.jpg" alt="Ramanathaswamy Temple, Rameswaram"></div>
+      <div class="body">
+        <span class="tag">Temple Visits</span>
+        <h3>Ramanathaswamy Temple, Rameswaram</h3>
+        <p>Darshan, rituals and practical advice for Agni Theertham and the 22 sacred wells.</p>
+        <span class="read">Read the guide &rarr;</span>
+      </div>
+    </a>
+    <div class="card" style="opacity:0.6;pointer-events:none;">
+      <div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:0.85rem;">Coming soon</div>
+      <div class="body">
+        <span class="tag">Temple Visits</span>
+        <h3>Kanyakumari</h3>
+        <p>Sacred places at India's southern edge. Guide coming soon.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout-inline">
+    <h2>Planning Your Own Sacred Journey?</h2>
+    <p>Share what's on your heart before or after your visit.</p>
+    <a href="/request-prayer.html" class="btn" style="background:var(--gold);border-color:var(--gold);color:var(--ink);">Submit a Prayer Request</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="brand"><img src="/images/home/prayersandhealings-logo.png" alt="Prayers and Healings logo" style="height:34px;width:34px;"><span>Prayers and Healings</span></a>
+    <p class="fine">&copy; <span id="year"></span> Prayers and Healings. Held with care, for every faith and every journey.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('menuToggle').addEventListener('click', function(){ document.getElementById('navMenu').classList.toggle('open'); });
+</script>
+
+</body>
+</html>

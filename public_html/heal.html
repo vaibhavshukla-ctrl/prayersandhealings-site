@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heal | Prayers and Healings</title>
+<meta name="description" content="Complementary spiritual practices used to support relaxation, reflection and wellbeing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<style>
+  .practice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin:20px 0 60px;}
+  .practice-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 26px;}
+  .practice-card h3{font-size:1.2rem;margin-bottom:10px;}
+  .practice-card p{font-size:0.96rem;color:var(--ink-soft);margin:0;}
+  .disclaimer{font-size:0.85rem;color:var(--ink-soft);text-align:center;max-width:600px;margin:0 auto 40px;}
+  @media (max-width:860px){.practice-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="/" class="brand"><img src="/images/home/prayersandhealings-logo.png" alt="Prayers and Healings logo"><span>Prayers and Healings</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">&#9776;</button>
+    <nav><ul id="navMenu">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/prayer-wall.php">Prayer Wall</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="page-hero">
+    <span class="eyebrow">Complementary Practices</span>
+    <h1>Explore Healing Practices</h1>
+    <p>Discover complementary spiritual practices used by people around the world to support relaxation, reflection and personal wellbeing.</p>
+  </div>
+
+  <p class="disclaimer">Healing practices discussed here are complementary spiritual and wellbeing practices, not substitutes for medical or mental-health care.</p>
+
+  <div class="practice-grid">
+    <div class="practice-card">
+      <h3>Reiki</h3>
+      <p>A gentle, hands-on practice centered on restful energy balance, widely used to support relaxation and a sense of calm.</p>
+    </div>
+    <div class="practice-card">
+      <h3>Energy Healing</h3>
+      <p>A family of traditions that work with breath, intention and presence to support emotional and physical wellbeing.</p>
+    </div>
+    <div class="practice-card">
+      <h3>Sound Healing</h3>
+      <p>Bowls, chant and resonance used to settle the mind and create a meditative state.</p>
+    </div>
+    <div class="practice-card">
+      <h3>Meditation &amp; Spiritual Healing</h3>
+      <p>Stillness practices drawn from many traditions, used to cultivate peace, clarity and connection.</p>
+    </div>
+  </div>
+
+  <div class="callout-inline">
+    <h2>Looking for Something Deeper?</h2>
+    <p>Prayer and healing often go hand in hand. Share what's on your heart.</p>
+    <a href="/request-prayer.html" class="btn" style="background:var(--gold);border-color:var(--gold);color:var(--ink);">Submit a Prayer Request</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="brand"><img src="/images/home/prayersandhealings-logo.png" alt="Prayers and Healings logo" style="height:34px;width:34px;"><span>Prayers and Healings</span></a>
+    <p class="fine">&copy; <span id="year"></span> Prayers and Healings. Held with care, for every faith and every journey.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('menuToggle').addEventListener('click', function(){ document.getElementById('navMenu').classList.toggle('open'); });
+</script>
+
+</body>
+</html>
