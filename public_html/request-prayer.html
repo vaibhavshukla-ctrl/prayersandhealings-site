@@ -8,59 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{--cream:#faf6ee;--cream-deep:#f2e9d8;--umber:#3e2a15;--umber-soft:#6b543a;--gold:#c9963e;--gold-deep:#a97328;--sage:#6b8f7b;--sage-deep:#4f6f5c;--line:rgba(62,42,21,0.14);}
-  *{box-sizing:border-box;}
-  body{margin:0;background:var(--cream);color:var(--umber);font-family:'Karla', sans-serif;line-height:1.7;}
-  h1,h2,.display{font-family:'Fraunces', serif;font-weight:500;color:var(--umber);margin:0;}
-  a{color:inherit;}
-  .wrap{max-width:640px;margin:0 auto;padding:0 28px;}
-  header{position:sticky;top:0;z-index:50;background:rgba(250,246,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
-  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;max-width:1100px;margin:0 auto;}
-  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
-  .brand img{height:44px;width:44px;border-radius:50%;}
-  .brand span{font-family:'Fraunces',serif;font-size:1.15rem;}
-  nav ul{list-style:none;display:flex;gap:30px;margin:0;padding:0;}
-  nav ul a{text-decoration:none;font-size:0.95rem;color:var(--umber-soft);}
-  .menu-toggle{display:none;background:none;border:none;font-size:1.6rem;color:var(--umber);cursor:pointer;}
-
-  .page-hero{padding:60px 0 30px;text-align:center;}
-  .eyebrow{display:inline-block;font-size:0.78rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--sage-deep);margin-bottom:16px;font-weight:600;}
-  .page-hero h1{font-size:2.3rem;margin-bottom:14px;}
-  .page-hero p{color:var(--umber-soft);}
-
-  form{background:#fff;border:1px solid var(--line);border-radius:20px;padding:36px;margin:20px 0 60px;}
-  label{display:block;font-weight:600;font-size:0.92rem;margin-bottom:8px;color:var(--umber);}
-  select, textarea, input{
-    width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--line);
-    font-family:'Karla',sans-serif;font-size:0.98rem;margin-bottom:22px;background:var(--cream);color:var(--umber);
-  }
-  textarea{min-height:140px;resize:vertical;}
-  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--umber);color:var(--cream);padding:14px 28px;border-radius:100px;border:none;font-size:0.98rem;font-weight:600;cursor:pointer;width:100%;justify-content:center;}
-  .btn:hover{background:var(--gold-deep);}
-  .btn:disabled{opacity:0.6;cursor:not-allowed;}
-  .trust-row{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:10px;font-size:0.85rem;color:var(--umber-soft);}
-  #formMessage{margin-top:18px;padding:14px 16px;border-radius:10px;font-size:0.95rem;display:none;}
-  #formMessage.success{background:#e7f0ea;color:var(--sage-deep);display:block;}
-  #formMessage.error{background:#f6e4de;color:#a1442a;display:block;}
-
-  footer{border-top:1px solid var(--line);padding:44px 0;}
-  .footer-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
-  footer .fine{font-size:0.82rem;color:var(--umber-soft);}
-
-  @media (max-width:860px){
-    nav ul{position:fixed;top:74px;left:0;right:0;background:var(--cream);flex-direction:column;padding:20px 28px;border-bottom:1px solid var(--line);display:none;}
-    nav ul.open{display:flex;}
-    .menu-toggle{display:block;}
-  }
-</style>
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
 <header>
   <div class="nav">
     <a href="/" class="brand"><img src="/images/home/prayersandhealings-logo.png" alt="Prayers and Healings logo"><span>Prayers and Healings</span></a>
-    <button class="menu-toggle" id="menuToggle">&#9776;</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">&#9776;</button>
     <nav><ul id="navMenu">
       <li><a href="/">Home</a></li>
       <li><a href="/about.html">About</a></li>
@@ -71,14 +26,20 @@
   </div>
 </header>
 
-<div class="wrap">
+<div class="wrap-form">
   <div class="page-hero">
     <span class="eyebrow">Request a Prayer</span>
     <h1>Need Someone to Pray for You?</h1>
     <p>Whatever you're going through, you don't have to put it into perfect words. Share your intention below, we will review it with care.</p>
   </div>
 
-  <form id="prayerForm">
+  <div class="trust-row">
+    <div class="trust-badge"><span class="icon">&#128176;</span>Always Free</div>
+    <div class="trust-badge"><span class="icon">&#128274;</span>Private by Default</div>
+    <div class="trust-badge"><span class="icon">&#128153;</span>Handled With Care</div>
+  </div>
+
+  <form class="card-form" id="prayerForm">
     <label for="category">What is this prayer for?</label>
     <select id="category" name="category" required>
       <option value="">Select a category</option>
@@ -98,15 +59,9 @@
     <label for="contact_email">Email (optional, kept private, only if you'd like a response)</label>
     <input type="email" id="contact_email" name="contact_email" placeholder="you@example.com">
 
-    <button type="submit" class="btn" id="submitBtn">Submit Prayer Request</button>
+    <button type="submit" class="btn btn-full" id="submitBtn">Submit Prayer Request</button>
     <div id="formMessage"></div>
   </form>
-
-  <div class="trust-row">
-    <span>Always Free</span>
-    <span>Private by Default</span>
-    <span>Handled With Care</span>
-  </div>
 </div>
 
 <footer>
@@ -118,9 +73,7 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-  document.getElementById('menuToggle').addEventListener('click', function(){
-    document.getElementById('navMenu').classList.toggle('open');
-  });
+  document.getElementById('menuToggle').addEventListener('click', function(){ document.getElementById('navMenu').classList.toggle('open'); });
 
   document.getElementById('prayerForm').addEventListener('submit', async function(e){
     e.preventDefault();
