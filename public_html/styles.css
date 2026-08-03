@@ -85,7 +85,9 @@ textarea{min-height:140px;resize:vertical;}
 #formMessage{margin-top:18px;padding:14px 16px;border-radius:10px;font-size:0.95rem;display:none;}
 #formMessage.success{background:#e7f0ea;color:var(--sage-deep);display:block;}
 #formMessage.error{background:#f6e4de;color:#a1442a;display:block;}
-.trust-row{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:10px;font-size:0.85rem;color:var(--ink-soft);}
+.trust-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:24px;}
+.trust-badge{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 20px;font-size:0.92rem;font-weight:600;color:var(--ink);flex:1;min-width:160px;justify-content:center;}
+.trust-badge .icon{font-size:1.3rem;}
 
 /* Prayer wall cards */
 .prayer-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 26px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;}
