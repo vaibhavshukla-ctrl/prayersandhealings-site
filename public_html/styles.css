@@ -54,12 +54,12 @@ nav ul a.active{color:var(--blue-deep);border-bottom:2px solid var(--blue-deep);
 /* Callout block, used on homepage and blog posts */
 .callout{background:var(--blue-deep);color:var(--cream);border-radius:28px;padding:64px 48px;margin:20px 0 90px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
 .callout h2{color:var(--cream);font-size:1.9rem;margin-bottom:14px;}
-.callout p{color:#dce9f2;max-width:480px;font-size:1.02rem;}
+.callout p{color:#ffffff;opacity:0.92;max-width:480px;font-size:1.02rem;}
 .callout .btn{background:var(--gold);border-color:var(--gold);color:var(--ink);}
 .callout .btn:hover{background:var(--cream);border-color:var(--cream);color:var(--ink);}
 .callout-inline{background:var(--blue-deep);color:var(--cream);border-radius:20px;padding:40px 34px;margin:50px 0;text-align:center;}
 .callout-inline h2{color:var(--cream);font-size:1.5rem;margin-bottom:14px;}
-.callout-inline p{color:#dce9f2;margin-bottom:22px;}
+.callout-inline p{color:#ffffff;opacity:0.92;margin-bottom:22px;}
 
 /* Blog / card grid, shared by homepage preview and blog listing */
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;gap:20px;flex-wrap:wrap;}
