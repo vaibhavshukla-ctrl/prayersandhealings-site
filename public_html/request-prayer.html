@@ -90,9 +90,11 @@
       const res = await fetch('/submit-prayer.php', { method: 'POST', body: formData });
       const data = await res.json();
       if (data.success) {
-        msg.textContent = data.message;
+        msg.innerHTML = '<span style="font-size:1.3rem;">&#9989;</span><span>' + data.message + '</span>';
         msg.className = 'success';
         this.reset();
+        this.querySelectorAll('input, select, textarea, button').forEach(function(el){ el.style.display = 'none'; });
+        msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } else {
         msg.textContent = data.message || 'Something went wrong. Please try again.';
         msg.className = 'error';
