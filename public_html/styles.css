@@ -82,8 +82,8 @@ label{display:block;font-weight:600;font-size:0.92rem;margin-bottom:8px;color:va
 select, textarea, input{width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--line);font-family:'Karla',sans-serif;font-size:0.98rem;margin-bottom:22px;background:var(--cream);color:var(--ink);}
 textarea{min-height:140px;resize:vertical;}
 .btn-full{width:100%;justify-content:center;}
-#formMessage{margin-top:18px;padding:14px 16px;border-radius:10px;font-size:0.95rem;display:none;}
-#formMessage.success{background:#e7f0ea;color:var(--sage-deep);display:block;}
+#formMessage{margin-top:18px;padding:16px 18px;border-radius:10px;font-size:0.98rem;display:none;font-weight:600;}
+#formMessage.success{background:#e7f0ea;color:var(--sage-deep);display:flex;align-items:center;gap:10px;}
 #formMessage.error{background:#f6e4de;color:#a1442a;display:block;}
 .trust-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:24px;}
 .trust-badge{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 20px;font-size:0.92rem;font-weight:600;color:var(--ink);flex:1;min-width:160px;justify-content:center;}
