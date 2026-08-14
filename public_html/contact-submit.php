@@ -5,7 +5,7 @@
 header('Content-Type: application/json');
 
 // Change this to the email address you want to receive messages at.
-define('CONTACT_RECEIVE_EMAIL', 'you@prayersandhealings.com');
+define('CONTACT_RECEIVE_EMAIL', 'support@prayersandhealings.com');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
