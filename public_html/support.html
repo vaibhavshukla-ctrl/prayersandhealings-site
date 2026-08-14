@@ -3,12 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact | Prayers and Healings</title>
-<meta name="description" content="Get in touch with Prayers and Healings.">
+<title>Support Us | Prayers and Healings</title>
+<meta name="description" content="Help us keep prayer requests free and accessible to everyone.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Karla:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
+<style>
+  .support-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:20px 0 60px;}
+  .support-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 24px;text-align:center;}
+  .support-card h3{font-size:1.1rem;margin-bottom:10px;}
+  .support-card p{font-size:0.93rem;color:var(--ink-soft);margin:0;}
+  @media (max-width:860px){.support-grid{grid-template-columns:1fr;}}
+</style>
 </head>
 <body>
 
@@ -22,32 +29,41 @@
       <li><a href="/blog.html">Blog</a></li>
       <li><a href="/find-a-prayer.html">Find a Prayer</a></li>
       <li><a href="/prayer-wall.php">Prayer Wall</a></li>
-      <li><a href="/contact.html" class="active">Contact</a></li>
+      <li><a href="/contact.html">Contact</a></li>
     </ul></nav>
   </div>
 </header>
 
-<div class="wrap-form">
+<main>
+<div class="wrap-narrow">
   <div class="page-hero">
-    <span class="eyebrow">Get in Touch</span>
-    <h1>Contact Us</h1>
-    <p>Questions, feedback, or want to get involved? We'd love to hear from you.</p>
+    <span class="eyebrow">Support Us</span>
+    <h1>Help Keep This Space Free</h1>
+    <p>Prayers and Healings has never charged, and never will, for prayer. Your support helps us keep it that way, and grow what we can offer.</p>
   </div>
 
-  <form class="card-form" id="contactForm">
-    <label for="name">Your name</label>
-    <input type="text" id="name" name="name" required>
+  <div class="support-grid">
+    <div class="support-card">
+      <h3>Your Time</h3>
+      <p>Join us as a prayer volunteer. A few quiet minutes a week can mean a great deal to someone.</p>
+    </div>
+    <div class="support-card">
+      <h3>Your Voice</h3>
+      <p>Share this site with someone who might need it. Word of mouth is how we grow.</p>
+    </div>
+    <div class="support-card">
+      <h3>Your Contribution</h3>
+      <p>Financial support helps cover hosting and lets us build more ways to serve this community.</p>
+    </div>
+  </div>
 
-    <label for="email">Your email</label>
-    <input type="email" id="email" name="email" required>
-
-    <label for="message">Message</label>
-    <textarea id="message" name="message" required></textarea>
-
-    <button type="submit" class="btn btn-full" id="submitBtn">Send Message</button>
-    <div id="formMessage"></div>
-  </form>
+  <div class="callout-inline">
+    <h2>Want to Contribute?</h2>
+    <p>We're setting up our donation channels. Reach out and we'll let you know the best way to help.</p>
+    <a href="/contact.html" class="btn" style="background:var(--gold);border-color:var(--gold);color:var(--ink);">Contact Us</a>
+  </div>
 </div>
+</main>
 
 <footer>
   <div class="footer-inner">
@@ -65,27 +81,8 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   document.getElementById('menuToggle').addEventListener('click', function(){ document.getElementById('navMenu').classList.toggle('open'); });
-
-  document.getElementById('contactForm').addEventListener('submit', async function(e){
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    const msg = document.getElementById('formMessage');
-    btn.disabled = true; btn.textContent = 'Sending...';
-    msg.className = ''; msg.style.display = 'none';
-    const formData = new FormData(this);
-    try {
-      const res = await fetch('/contact-submit.php', { method: 'POST', body: formData });
-      const data = await res.json();
-      msg.textContent = data.message;
-      msg.className = data.success ? 'success' : 'error';
-      if (data.success) this.reset();
-    } catch (err) {
-      msg.textContent = 'Could not send. Please try again shortly.';
-      msg.className = 'error';
-    }
-    btn.disabled = false; btn.textContent = 'Send Message';
-  });
 </script>
+<script src="/site.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Use | Prayers and Healings</title>
+<meta name="description" content="Terms of use for Prayers and Healings.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Karla:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<style>
+  .legal-body h2{font-size:1.3rem;margin:36px 0 12px;}
+  .legal-body p, .legal-body li{color:var(--ink-soft);font-size:0.98rem;line-height:1.75;}
+  .legal-body ul{padding-left:22px;}
+  .legal-body li{margin-bottom:8px;}
+  .updated{font-size:0.85rem;color:var(--ink-soft);font-style:italic;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="/" class="brand"><img src="/images/home/prayersandhealings-logo.png" alt="Prayers and Healings logo"><span>Prayers and Healings</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">&#9776;</button>
+    <nav><ul id="navMenu">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/find-a-prayer.html">Find a Prayer</a></li>
+      <li><a href="/prayer-wall.php">Prayer Wall</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap-narrow">
+  <div class="page-hero" style="text-align:left;padding-top:60px;">
+    <span class="eyebrow">Legal</span>
+    <h1 style="font-size:2.2rem;">Terms of Use</h1>
+    <p class="updated">Last updated: August 2026</p>
+  </div>
+
+  <div class="legal-body">
+    <p>By using prayersandhealings.com ("the Site"), you agree to these terms. Please read them carefully.</p>
+
+    <h2>Use of the Site</h2>
+    <p>This Site is provided free of charge for anyone seeking prayer, reflection, or spiritual content. You may not use the Site to submit unlawful, abusive, hateful, or harmful content.</p>
+
+    <h2>Prayer Requests and the Prayer Wall</h2>
+    <ul>
+      <li>Submitted prayer requests are reviewed by us before appearing publicly. We reserve the right to decline, edit for length or clarity, or remove any submission at our discretion.</li>
+      <li>Please do not include another person's private or identifying information without their consent.</li>
+      <li>The Prayer Wall is a community space. We ask that anyone praying over listed requests do so respectfully.</li>
+    </ul>
+
+    <h2>No Guarantee of Outcome</h2>
+    <p>Prayers and Healings does not guarantee any particular outcome from prayer, healing practices, or spiritual content shared on this Site. Content related to complementary healing practices (such as Reiki, meditation, or energy healing) is offered for informational and spiritual purposes only.</p>
+
+    <h2>Not Medical or Professional Advice</h2>
+    <p>Nothing on this Site constitutes medical, psychological, legal, or financial advice. Always consult a qualified professional for matters requiring such expertise.</p>
+
+    <h2>Intellectual Property</h2>
+    <p>Content on this Site, including blog posts, original prayers, and design, is owned by Prayers and Healings unless otherwise noted. Public domain material (such as traditional Sanskrit prayers) is identified as such where used.</p>
+
+    <h2>Changes to These Terms</h2>
+    <p>We may update these terms from time to time. Continued use of the Site after changes are posted constitutes acceptance of the updated terms.</p>
+
+    <h2>Contact Us</h2>
+    <p>Questions about these terms? <a href="/contact.html" style="color:var(--blue-deep);">Reach out to us here</a>.</p>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="brand"><img src="/images/home/prayersandhealings-logo.png" alt="Prayers and Healings logo" style="height:34px;width:34px;"><span>Prayers and Healings</span></a>
+    <p class="fine">&copy; <span id="year"></span> Prayers and Healings. Held with care, for every faith and every journey.</p>
+  </div>
+  <div class="footer-legal">
+    <a href="/support.html">Support Us</a>
+    <a href="/privacy-policy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Use</a>
+    <a href="/disclaimer.html">Disclaimer</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('menuToggle').addEventListener('click', function(){ document.getElementById('navMenu').classList.toggle('open'); });
+</script>
+<script src="/site.js"></script>
+
+</body>
+</html>

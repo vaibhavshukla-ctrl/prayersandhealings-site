@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy | Prayers and Healings</title>
+<meta name="description" content="How Prayers and Healings collects, uses, and protects your information.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Karla:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<style>
+  .legal-body h2{font-size:1.3rem;margin:36px 0 12px;}
+  .legal-body p, .legal-body li{color:var(--ink-soft);font-size:0.98rem;line-height:1.75;}
+  .legal-body ul{padding-left:22px;}
+  .legal-body li{margin-bottom:8px;}
+  .updated{font-size:0.85rem;color:var(--ink-soft);font-style:italic;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="/" class="brand"><img src="/images/home/prayersandhealings-logo.png" alt="Prayers and Healings logo"><span>Prayers and Healings</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">&#9776;</button>
+    <nav><ul id="navMenu">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/find-a-prayer.html">Find a Prayer</a></li>
+      <li><a href="/prayer-wall.php">Prayer Wall</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap-narrow">
+  <div class="page-hero" style="text-align:left;padding-top:60px;">
+    <span class="eyebrow">Legal</span>
+    <h1 style="font-size:2.2rem;">Privacy Policy</h1>
+    <p class="updated">Last updated: August 2026</p>
+  </div>
+
+  <div class="legal-body">
+    <p>Prayers and Healings ("we", "us") respects your privacy. This page explains what information we collect, how we use it, and the choices you have.</p>
+
+    <h2>Information We Collect</h2>
+    <ul>
+      <li><strong>Prayer requests:</strong> the category and text you submit, and an optional email address if you'd like a private response.</li>
+      <li><strong>Contact form messages:</strong> your name, email, and message when you reach out to us.</li>
+      <li><strong>Basic visit data:</strong> we log page visits (URL and timestamp) to understand how the site is used. We do not collect names, emails, or precise location through this tracking.</li>
+    </ul>
+
+    <h2>How We Use Your Information</h2>
+    <ul>
+      <li>Prayer requests are reviewed before appearing publicly on the Prayer Wall. Only the category and prayer text are shown publicly, never your email address.</li>
+      <li>Contact form messages are used only to respond to you.</li>
+      <li>Visit data is used in aggregate to understand site traffic and is not shared with third parties.</li>
+    </ul>
+
+    <h2>What We Don't Do</h2>
+    <ul>
+      <li>We do not sell or rent your personal information to anyone.</li>
+      <li>We do not display third-party advertising on this site.</li>
+      <li>We do not share your prayer request's contact email publicly.</li>
+    </ul>
+
+    <h2>Data Storage</h2>
+    <p>Information is stored securely on our hosting provider's servers. While we take reasonable steps to protect your information, no online system can be guaranteed 100% secure.</p>
+
+    <h2>Your Choices</h2>
+    <p>You can submit a prayer request without providing an email address. If you'd like a previously submitted request removed, contact us and we'll act on your request.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>We may update this policy from time to time. Changes will be posted on this page.</p>
+
+    <h2>Contact Us</h2>
+    <p>Questions about this policy? <a href="/contact.html" style="color:var(--blue-deep);">Reach out to us here</a>.</p>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="brand"><img src="/images/home/prayersandhealings-logo.png" alt="Prayers and Healings logo" style="height:34px;width:34px;"><span>Prayers and Healings</span></a>
+    <p class="fine">&copy; <span id="year"></span> Prayers and Healings. Held with care, for every faith and every journey.</p>
+  </div>
+  <div class="footer-legal">
+    <a href="/support.html">Support Us</a>
+    <a href="/privacy-policy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Use</a>
+    <a href="/disclaimer.html">Disclaimer</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('menuToggle').addEventListener('click', function(){ document.getElementById('navMenu').classList.toggle('open'); });
+</script>
+<script src="/site.js"></script>
+
+</body>
+</html>
