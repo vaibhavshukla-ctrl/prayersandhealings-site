@@ -20,7 +20,6 @@
       <li><a href="/">Home</a></li>
       <li><a href="/about.html">About</a></li>
       <li><a href="/blog.html">Blog</a></li>
-      <li><a href="/find-a-prayer.html">Find a Prayer</a></li>
       <li><a href="/prayer-wall.php">Prayer Wall</a></li>
       <li><a href="/contact.html" class="active">Contact</a></li>
     </ul></nav>
@@ -54,12 +53,6 @@
     <a href="/" class="brand"><img src="/images/home/prayersandhealings-logo.png" alt="Prayers and Healings logo" style="height:34px;width:34px;"><span>Prayers and Healings</span></a>
     <p class="fine">&copy; <span id="year"></span> Prayers and Healings. Held with care, for every faith and every journey.</p>
   </div>
-  <div class="footer-legal">
-    <a href="/support.html">Support Us</a>
-    <a href="/privacy-policy.html">Privacy Policy</a>
-    <a href="/terms.html">Terms of Use</a>
-    <a href="/disclaimer.html">Disclaimer</a>
-  </div>
 </footer>
 
 <script>
@@ -76,10 +69,12 @@
     try {
       const res = await fetch('/contact-submit.php', { method: 'POST', body: formData });
       const data = await res.json();
+      msg.style.display = '';
       msg.textContent = data.message;
       msg.className = data.success ? 'success' : 'error';
       if (data.success) this.reset();
     } catch (err) {
+      msg.style.display = '';
       msg.textContent = 'Could not send. Please try again shortly.';
       msg.className = 'error';
     }
