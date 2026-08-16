@@ -3,3 +3,4 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home2/praye066/public_html/
     - /bin/cp -R ./public_html/* $DEPLOYPATH
+    - /bin/cp ./public_html/htaccess $DEPLOYPATH.htaccess
