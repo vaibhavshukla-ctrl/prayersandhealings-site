@@ -3,6 +3,34 @@ require_once 'db-config.php';
 $conn = getDbConnection();
 $result = $conn->query("SELECT id, category, intention_text, prayer_count FROM prayers WHERE is_approved = 1 ORDER BY created_at DESC LIMIT 100");
 
+$sharedPrayer = null;
+if (isset($_GET['id']) && ctype_digit((string)$_GET['id'])) {
+    $sharedId = (int)$_GET['id'];
+    $stmt = $conn->prepare("SELECT id, category, intention_text, prayer_count FROM prayers WHERE id = ? AND is_approved = 1");
+    $stmt->bind_param('i', $sharedId);
+    $stmt->execute();
+    $sharedPrayer = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+}
+
+$prayers = [];
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $prayers[] = $row;
+    }
+}
+if ($sharedPrayer) {
+    $alreadyListed = false;
+    foreach ($prayers as $row) {
+        if ((int)$row['id'] === (int)$sharedPrayer['id']) { $alreadyListed = true; break; }
+    }
+    if (!$alreadyListed) {
+        array_unshift($prayers, $sharedPrayer);
+    }
+}
+
+$siteUrl = 'https://prayersandhealings.com/prayer-wall.php';
+
 $categoryLabels = [
     'health' => 'Health & Healing',
     'family' => 'Family',
@@ -19,8 +47,17 @@ $categoryLabels = [
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prayer Wall | Prayers and Healings</title>
+<title><?php echo $sharedPrayer ? 'A Prayer Request | Prayers and Healings' : 'Prayer Wall | Prayers and Healings'; ?></title>
 <meta name="description" content="Take a quiet moment and pray for someone who needs it.">
+<?php if ($sharedPrayer): ?>
+<meta property="og:title" content="A Prayer Request | Prayers and Healings">
+<meta property="og:description" content="<?php echo htmlspecialchars(mb_strimwidth($sharedPrayer['intention_text'], 0, 160, '...')); ?>">
+<meta property="og:url" content="<?php echo $siteUrl . '?id=' . (int)$sharedPrayer['id']; ?>">
+<meta property="og:type" content="website">
+<link rel="canonical" href="<?php echo $siteUrl . '?id=' . (int)$sharedPrayer['id']; ?>">
+<?php else: ?>
+<link rel="canonical" href="<?php echo $siteUrl; ?>">
+<?php endif; ?>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
@@ -52,8 +89,14 @@ $categoryLabels = [
   .pray-btn{background:var(--umber);color:var(--cream);border:none;padding:11px 20px;border-radius:100px;font-size:0.9rem;font-weight:600;cursor:pointer;white-space:nowrap;}
   .pray-btn:hover{background:var(--gold-deep);}
   .pray-btn:disabled{opacity:0.6;cursor:default;}
+  .card-actions{display:flex;flex-direction:column;gap:8px;align-items:flex-end;}
+  .share-btn{background:none;border:1px solid var(--line);color:var(--umber-soft);padding:8px 16px;border-radius:100px;font-size:0.8rem;font-weight:600;cursor:pointer;white-space:nowrap;}
+  .share-btn:hover{border-color:var(--gold-deep);color:var(--gold-deep);}
   .count{font-size:0.8rem;color:var(--umber-soft);margin-top:6px;display:block;}
   .empty{text-align:center;color:var(--umber-soft);padding:40px 0;}
+  .prayer-card.highlight{border-color:var(--gold-deep);box-shadow:0 0 0 3px rgba(201,150,62,0.18);}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--umber);color:var(--cream);padding:10px 20px;border-radius:100px;font-size:0.85rem;opacity:0;pointer-events:none;transition:opacity 0.25s;z-index:100;}
+  .toast.show{opacity:1;}
 
   footer{border-top:1px solid var(--line);padding:44px 0;}
   .footer-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
@@ -90,22 +133,27 @@ $categoryLabels = [
   </div>
 
   <div class="wall" id="prayerWall">
-    <?php if ($result && $result->num_rows > 0): ?>
-      <?php while ($row = $result->fetch_assoc()): ?>
-        <div class="prayer-card" data-id="<?php echo (int)$row['id']; ?>">
+    <?php if (count($prayers) > 0): ?>
+      <?php foreach ($prayers as $row): ?>
+        <div class="prayer-card" id="prayer-<?php echo (int)$row['id']; ?>" data-id="<?php echo (int)$row['id']; ?>">
           <div>
             <span class="tag"><?php echo htmlspecialchars($categoryLabels[$row['category']] ?? ucfirst($row['category'])); ?></span>
             <p><?php echo nl2br(htmlspecialchars($row['intention_text'])); ?></p>
             <span class="count"><span class="count-num"><?php echo (int)$row['prayer_count']; ?></span> prayers</span>
           </div>
-          <button class="pray-btn" onclick="prayFor(this, <?php echo (int)$row['id']; ?>)">&#128591; I Prayed</button>
+          <div class="card-actions">
+            <button class="pray-btn" onclick="prayFor(this, <?php echo (int)$row['id']; ?>)">&#128591; I Prayed</button>
+            <button class="share-btn" onclick="shareFor(this, <?php echo (int)$row['id']; ?>)">&#128279; Share</button>
+          </div>
         </div>
-      <?php endwhile; ?>
+      <?php endforeach; ?>
     <?php else: ?>
       <p class="empty">No prayers on the wall yet. Be the first to <a href="/request-prayer.html">request a prayer</a>.</p>
     <?php endif; ?>
   </div>
 </div>
+
+<div class="toast" id="toast">Link copied</div>
 
 <footer>
   <div class="footer-inner">
@@ -138,6 +186,37 @@ $categoryLabels = [
       btn.disabled = false;
     }
   }
+
+  function shareFor(btn, id){
+    const url = window.location.origin + '/prayer-wall.php?id=' + id;
+    const toast = document.getElementById('toast');
+    const showToast = (msg) => {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1800);
+    };
+    if (navigator.share) {
+      navigator.share({ title: 'A Prayer Request', url: url }).catch(() => {});
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => showToast('Link copied')).catch(() => showToast(url));
+    } else {
+      showToast(url);
+    }
+  }
+
+  (function(){
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    if (id) {
+      const card = document.getElementById('prayer-' + id);
+      if (card) {
+        card.classList.add('highlight');
+        setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200);
+      }
+    }
+  })();
 </script>
 
 </body>
