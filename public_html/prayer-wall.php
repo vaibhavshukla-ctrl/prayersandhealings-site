@@ -1,12 +1,10 @@
 <?php
 require_once 'db-config.php';
 $conn = getDbConnection();
-$result = $conn->query("SELECT id, category, intention_text, prayer_count FROM prayers WHERE is_approved = 1 ORDER BY created_at DESC LIMIT 100");
-
 $sharedPrayer = null;
 if (isset($_GET['id']) && ctype_digit((string)$_GET['id'])) {
     $sharedId = (int)$_GET['id'];
-    $stmt = $conn->prepare("SELECT id, category, intention_text, prayer_count FROM prayers WHERE id = ? AND is_approved = 1");
+    $stmt = $conn->prepare("SELECT id, category, intention_text, prayer_count, name, show_name FROM prayers WHERE id = ? AND is_approved = 1");
     $stmt->bind_param('i', $sharedId);
     $stmt->execute();
     $sharedPrayer = $stmt->get_result()->fetch_assoc();
@@ -14,18 +12,15 @@ if (isset($_GET['id']) && ctype_digit((string)$_GET['id'])) {
 }
 
 $prayers = [];
-if ($result) {
-    while ($row = $result->fetch_assoc()) {
-        $prayers[] = $row;
-    }
-}
 if ($sharedPrayer) {
-    $alreadyListed = false;
-    foreach ($prayers as $row) {
-        if ((int)$row['id'] === (int)$sharedPrayer['id']) { $alreadyListed = true; break; }
-    }
-    if (!$alreadyListed) {
-        array_unshift($prayers, $sharedPrayer);
+    // A shared link should point at exactly one prayer, unambiguously.
+    $prayers[] = $sharedPrayer;
+} else {
+    $result = $conn->query("SELECT id, category, intention_text, prayer_count, name, show_name FROM prayers WHERE is_approved = 1 ORDER BY created_at DESC LIMIT 100");
+    if ($result) {
+        while ($row = $result->fetch_assoc()) {
+            $prayers[] = $row;
+        }
     }
 }
 
@@ -94,7 +89,6 @@ $categoryLabels = [
   .share-btn:hover{border-color:var(--gold-deep);color:var(--gold-deep);}
   .count{font-size:0.8rem;color:var(--umber-soft);margin-top:6px;display:block;}
   .empty{text-align:center;color:var(--umber-soft);padding:40px 0;}
-  .prayer-card.highlight{border-color:var(--gold-deep);box-shadow:0 0 0 3px rgba(201,150,62,0.18);}
   .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--umber);color:var(--cream);padding:10px 20px;border-radius:100px;font-size:0.85rem;opacity:0;pointer-events:none;transition:opacity 0.25s;z-index:100;}
   .toast.show{opacity:1;}
 
@@ -127,9 +121,12 @@ $categoryLabels = [
 
 <div class="wrap">
   <div class="page-hero">
-    <span class="eyebrow">Someone Needs Your Prayer</span>
-    <h1>The Prayer Wall</h1>
-    <p>Take a quiet moment. Somewhere, someone is hoping that they are not alone.</p>
+    <span class="eyebrow"><?php echo $sharedPrayer ? 'A Prayer Was Shared With You' : 'Someone Needs Your Prayer'; ?></span>
+    <h1><?php echo $sharedPrayer ? 'One Prayer Request' : 'The Prayer Wall'; ?></h1>
+    <p><?php echo $sharedPrayer ? 'Take a quiet moment for this one.' : 'Take a quiet moment. Somewhere, someone is hoping that they are not alone.'; ?></p>
+    <?php if ($sharedPrayer): ?>
+      <p style="margin-top:14px;"><a href="/prayer-wall.php" style="color:var(--sage-deep);font-weight:600;text-decoration:none;">&larr; View the full Prayer Wall</a></p>
+    <?php endif; ?>
   </div>
 
   <div class="wall" id="prayerWall">
@@ -139,6 +136,9 @@ $categoryLabels = [
           <div>
             <span class="tag"><?php echo htmlspecialchars($categoryLabels[$row['category']] ?? ucfirst($row['category'])); ?></span>
             <p><?php echo nl2br(htmlspecialchars($row['intention_text'])); ?></p>
+            <?php if (!empty($row['show_name']) && trim((string)$row['name']) !== ''): ?>
+              <span class="count">&mdash; <?php echo htmlspecialchars($row['name']); ?></span>
+            <?php endif; ?>
             <span class="count"><span class="count-num"><?php echo (int)$row['prayer_count']; ?></span> prayers</span>
           </div>
           <div class="card-actions">
@@ -147,6 +147,8 @@ $categoryLabels = [
           </div>
         </div>
       <?php endforeach; ?>
+    <?php elseif ($sharedPrayer === null && isset($_GET['id'])): ?>
+      <p class="empty">This prayer isn't available anymore. <a href="/prayer-wall.php">View the full Prayer Wall</a>.</p>
     <?php else: ?>
       <p class="empty">No prayers on the wall yet. Be the first to <a href="/request-prayer.html">request a prayer</a>.</p>
     <?php endif; ?>
@@ -205,18 +207,6 @@ $categoryLabels = [
       showToast(url);
     }
   }
-
-  (function(){
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-    if (id) {
-      const card = document.getElementById('prayer-' + id);
-      if (card) {
-        card.classList.add('highlight');
-        setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200);
-      }
-    }
-  })();
 </script>
 
 </body>

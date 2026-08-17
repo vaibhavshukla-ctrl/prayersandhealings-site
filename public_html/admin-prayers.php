@@ -99,6 +99,7 @@ if ($isLoggedIn) {
     <div class="card">
       <span class="tag"><?php echo htmlspecialchars($row['category']); ?></span>
       <p><?php echo nl2br(htmlspecialchars($row['intention_text'])); ?></p>
+      <?php if (!empty($row['name'])): ?><p class="count">Name: <?php echo htmlspecialchars($row['name']); ?> (<?php echo !empty($row['show_name']) ? 'shown on wall' : 'hidden'; ?>)</p><?php endif; ?>
       <?php if ($row['contact_email']): ?><p class="count">Contact: <?php echo htmlspecialchars($row['contact_email']); ?></p><?php endif; ?>
       <div class="actions">
         <form method="post" style="display:inline;">
@@ -118,6 +119,7 @@ if ($isLoggedIn) {
     <div class="card">
       <span class="tag"><?php echo htmlspecialchars($row['category']); ?></span>
       <p><?php echo nl2br(htmlspecialchars($row['intention_text'])); ?></p>
+      <?php if (!empty($row['name'])): ?><p class="count">Name: <?php echo htmlspecialchars($row['name']); ?> (<?php echo !empty($row['show_name']) ? 'shown on wall' : 'hidden'; ?>)</p><?php endif; ?>
       <p class="count"><?php echo (int)$row['prayer_count']; ?> people have prayed for this</p>
       <div class="actions">
         <form method="post" style="display:inline;" onsubmit="return confirm('Remove this from the public wall?');">

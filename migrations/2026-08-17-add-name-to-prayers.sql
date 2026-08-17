@@ -1,0 +1,3 @@
+ALTER TABLE prayers
+  ADD COLUMN name VARCHAR(100) NULL AFTER contact_email,
+  ADD COLUMN show_name TINYINT(1) NOT NULL DEFAULT 0 AFTER name;
